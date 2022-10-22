@@ -1,4 +1,4 @@
-const { GraphQLServer, PubSub } = require("graphql-yoga");
+const { GraphQLServer, PubSub, withFilter } = require("graphql-yoga");
 
 const { users, posts, comments } = require("./data");
 
@@ -108,13 +108,13 @@ const typeDefs = /* GraphQL */ `
     userDeleted: User!
 
     #Post
-    postCreated: Post!
+    postCreated(user_id: ID): Post!
     postUpdated: Post!
     postDeleted: Post!
     postCount: Int!
 
     #Comment
-    commentCreated: Comment!
+    commentCreated(post_id: ID): Comment!
     commentUpdated: Comment!
     commentDeleted: Comment!
   }
@@ -135,7 +135,12 @@ const resolvers = {
 
     //Post
     postCreated: {
-      subscribe: (_, __, { pubsub }) => pubsub.asyncIterator("postCreated"),
+      subscribe: withFilter(
+        (_, __, { pubsub }) => pubsub.asyncIterator("postCreated"),
+        (payload, variables) => {
+          return variables.user_id ? (payload.postCreated.user_id === variables.user_id) : true;
+        }
+      ),
     },
     postUpdated: {
       subscribe: (_, __, { pubsub }) => pubsub.asyncIterator("postUpdated"),
@@ -155,7 +160,14 @@ const resolvers = {
 
     //Comment
     commentCreated: {
-      subscribe: (_, __, { pubsub }) => pubsub.asyncIterator("commentCreated"),
+      subscribe: withFilter(
+        (_, __, { pubsub }) => pubsub.asyncIterator("commentCreated"),
+        (payload, variables) => {
+          console.log("payload", payload);
+          console.log("variables", variables);
+          return variables.post_id ? (payload.commentCreated.post_id === variables.post_id) : true;
+        } 
+      )
     },
     commentUpdated: {
       subscribe: (_, __, { pubsub }) => pubsub.asyncIterator("commentUpdated"),
