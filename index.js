@@ -1,5 +1,7 @@
 const { GraphQLServer, PubSub, withFilter } = require("graphql-yoga");
 
+const pubsub  = require("./pubsub")
+
 const { users, posts, comments } = require("./data");
 
 const { nanoid } = require("nanoid");
@@ -361,7 +363,6 @@ const resolvers = {
   },
 };
 
-const pubsub = new PubSub();
 const server = new GraphQLServer({
   typeDefs,
   resolvers,

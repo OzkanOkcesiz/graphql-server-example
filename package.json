@@ -10,7 +10,10 @@
   "dependencies": {
     "apollo-server": "^3.10.3",
     "apollo-server-core": "^3.10.3",
+    "dotenv": "^16.0.3",
+    "graphql-redis-subscriptions": "^2.5.0",
     "graphql-yoga": "1.18.3",
+    "ioredis": "^5.2.3",
     "nanoid": "3.0.0"
   },
   "devDependencies": {
