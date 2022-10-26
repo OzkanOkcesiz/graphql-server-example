@@ -1,11 +1,14 @@
-const { GraphQLServer } = require("graphql-yoga");
+import { GraphQLServer } from "graphql-yoga";
+
+// import {resolvers}  from "./graphql/resolvers/index";
 
 const resolvers = require("./graphql/resolvers")
-const typeDefs = require("./graphql/typeDefs")
 
-const pubsub = require("./pubsub");
+import { typeDefs } from "./graphql/typeDefs";
 
-const db = require("./data");
+import {pubsub} from "./pubsub";
+
+import db from "./data"
 
 
 const server = new GraphQLServer({

@@ -1,8 +1,8 @@
-const { nanoid } = require("nanoid")
+import { nanoid } from "nanoid";
 
-const Mutation = {
+export const Mutation = {
     //User
-    createUser: (_, { data }, { pubsub, db }) => {
+    createUser: (_: any, { data }: any, { pubsub, db }:any ) => {
       const user = {
         id: nanoid(6),
         ...data,
@@ -11,8 +11,8 @@ const Mutation = {
       pubsub.publish("userCreated", { userCreated: user });
       return user;
     },
-    updateUser: (_, { id, data }, { pubsub, db }) => {
-      const user_index = db.users.findIndex((user) => user.id === id);
+    updateUser: (_: any, { id, data }: any, { pubsub, db }: any) => {
+      const user_index = db.users.findIndex((user: { id: any; }) => user.id === id);
 
       if (user_index === -1) {
         throw new Error("User not found.");
@@ -27,8 +27,8 @@ const Mutation = {
 
       return updated_user;
     },
-    deleteUser: (_, { id }, { pubsub, db }) => {
-      const user_index = db.users.findIndex((user) => user.id === id);
+    deleteUser: (_: any, { id }: any, { pubsub, db }: any) => {
+      const user_index = db.users.findIndex((user: { id: any; }) => user.id === id);
 
       if (user_index === -1) {
         throw new Error("User not found.");
@@ -40,7 +40,7 @@ const Mutation = {
 
       return deleted_user;
     },
-    deleteAllUsers: (_, __, { db }) => {
+    deleteAllUsers: (_: any, __: any, { db }: any) => {
       const length = db.users.length;
       db.users.splice(0, length);
 
@@ -50,7 +50,7 @@ const Mutation = {
     },
 
     //Post
-    createPost: (_, { data }, { pubsub, db }) => {
+    createPost: (_: any, { data }: any, { pubsub, db }: any) => {
       const post = {
         id: nanoid(6),
         ...data,
@@ -62,8 +62,8 @@ const Mutation = {
 
       return post;
     },
-    updatePost: (_, { id, data }, { pubsub, db }) => {
-      const post_index = db.posts.findIndex((post) => post.id === id);
+    updatePost: (_: any, { id, data }: any, { pubsub, db }: any) => {
+      const post_index = db.posts.findIndex((post: { id: any; }) => post.id === id);
 
       if (post_index === -1) {
         throw new Error("Post not found.");
@@ -78,8 +78,8 @@ const Mutation = {
 
       return updated_post;
     },
-    deletePost: (_, { id }, { pubsub, db }) => {
-      const post_index = db.posts.findIndex((post) => post.id === id);
+    deletePost: (_: any, { id }: any, { pubsub, db }: any) => {
+      const post_index = db.posts.findIndex((post: { id: any; }) => post.id === id);
 
       if (post_index === -1) {
         throw new Error("Post not found.");
@@ -91,7 +91,7 @@ const Mutation = {
       pubsub.publish("postCount", { postCount: db.posts.length });
       return deleted_post;
     },
-    deleteAllPosts: (_, __, { pubsub, db }) => {
+    deleteAllPosts: (_: any, __: any, { pubsub, db }: any) => {
       const length = db.posts.length;
       db.posts.splice(0, length);
 
@@ -103,7 +103,7 @@ const Mutation = {
     },
 
     //Comment
-    createComment: (_, { data }, { pubsub, db }) => {
+    createComment: (_: any, { data }: any, { pubsub, db }: any) => {
       const comment = {
         id: nanoid(6),
         ...data,
@@ -114,8 +114,8 @@ const Mutation = {
 
       return comment;
     },
-    updateComment: (_, { id, data }, { pubsub, db }) => {
-      const comment_index = db.comments.findIndex((comment) => comment.id === id);
+    updateComment: (_: any, { id, data }: any, { pubsub, db }: any) => {
+      const comment_index = db.comments.findIndex((comment: { id: any; }) => comment.id === id);
 
       if (comment_index === -1) {
         throw new Error("Comment not found");
@@ -130,8 +130,8 @@ const Mutation = {
 
       return db.comments[comment_index];
     },
-    deleteComment: (_, { id }, { pubsub, db }) => {
-      const comment_index = db.comments.findIndex((comment) => comment.id === id);
+    deleteComment: (_: any, { id }: any, { pubsub, db }: any) => {
+      const comment_index = db.comments.findIndex((comment: { id: any; }) => comment.id === id);
 
       if (comment_index === -1) {
         throw new Error("Comment not found.");
@@ -143,7 +143,7 @@ const Mutation = {
 
       return deleted_comment;
     },
-    deleteAllComments: (_, __, { db }) => {
+    deleteAllComments: (_: any, __: any, { db }: any) => {
       const length = db.comments.length;
       db.comments.splice(0, length);
 
@@ -153,4 +153,4 @@ const Mutation = {
     },
   }
 
-module.exports.Mutation = Mutation;
+// module.exports.Mutation = Mutation;

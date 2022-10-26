@@ -1,24 +1,21 @@
-const { RedisPubSub } = require('graphql-redis-subscriptions');
-const Redis = require('ioredis');
+import { RedisPubSub } from 'graphql-redis-subscriptions';
+import  Redis  from 'ioredis';
 
-const dotenv = require("dotenv");
+import dotenv from "dotenv";
 
 dotenv.config();
 
-const options = {
+const options: any = {
   host: process.env.REDIS_HOST,
   port: process.env.REDIS_PORT,
   password: process.env.REDIS_PASSWORD,
-  retryStrategy: times => {
+  retryStrategy: (times: number) => {
     // reconnect after
     return Math.min(times * 50, 2000);
   }
 };
 
-const pubsub = new RedisPubSub({
+export const pubsub = new RedisPubSub({
   publisher: new Redis(options),
   subscriber: new Redis(options)
 });
-
-
-module.exports = pubsub;

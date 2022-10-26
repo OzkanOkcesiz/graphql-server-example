@@ -2,7 +2,7 @@ const users = [
     {
         id: "1",
         fullName: "Önder ŞAHİN",
-        age:32
+        age: 32
     },
     {
         id: "2",
@@ -56,7 +56,7 @@ const comments = [
     }
 ];
 
-module.exports = {
+export default {
     users,
     posts,
     comments

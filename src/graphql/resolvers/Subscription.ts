@@ -1,15 +1,15 @@
-const { withFilter } = require("graphql-yoga");
+import { withFilter } from "graphql-yoga";
 
-const Subscription = {
+export const Subscription = {
   //User
   userCreated: {
-    subscribe: (_, __, { pubsub }) => pubsub.asyncIterator("userCreated"),
+    subscribe: (_: any, __: any, { pubsub }: any) => pubsub.asyncIterator("userCreated"),
   },
   userUpdated: {
-    subscribe: (_, __, { pubsub }) => pubsub.asyncIterator("userUpdated"),
+    subscribe: (_: any, __: any, { pubsub }: any) => pubsub.asyncIterator("userUpdated"),
   },
   userDeleted: {
-    subscribe: (_, __, { pubsub }) => pubsub.asyncIterator("userDeleted"),
+    subscribe: (_: any, __: any, { pubsub }: any) => pubsub.asyncIterator("userDeleted"),
   },
 
   //Post
@@ -24,13 +24,13 @@ const Subscription = {
     ),
   },
   postUpdated: {
-    subscribe: (_, __, { pubsub }) => pubsub.asyncIterator("postUpdated"),
+    subscribe: (_: any, __: any, { pubsub }: any) => pubsub.asyncIterator("postUpdated"),
   },
   postDeleted: {
-    subscribe: (_, __, { pubsub }) => pubsub.asyncIterator("postDeleted"),
+    subscribe: (_: any, __: any, { pubsub }: any) => pubsub.asyncIterator("postDeleted"),
   },
   postCount: {
-    subscribe: (_, __, { pubsub, db }) => {
+    subscribe: (_: any, __: any, { pubsub, db }: any) => {
       setTimeout(() => {
         pubsub.publish("postCount", { postCount: db.posts.length });
       });
@@ -53,11 +53,11 @@ const Subscription = {
     ),
   },
   commentUpdated: {
-    subscribe: (_, __, { pubsub }) => pubsub.asyncIterator("commentUpdated"),
+    subscribe: (_: any, __: any, { pubsub }: any) => pubsub.asyncIterator("commentUpdated"),
   },
   commentDeleted: {
-    subscribe: (_, __, { pubsub }) => pubsub.asyncIterator("commentDeleted"),
+    subscribe: (_: any, __: any, { pubsub }: any) => pubsub.asyncIterator("commentDeleted"),
   },
 };
 
-module.exports.Subscription = Subscription;
+// module.exports.Subscription = Subscription;
