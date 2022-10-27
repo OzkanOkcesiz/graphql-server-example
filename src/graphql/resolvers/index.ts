@@ -1,5 +1,6 @@
 import path from "path";
 
+
 import { mergeResolvers } from "@graphql-tools/merge";
 import { loadFilesSync } from "@graphql-tools/load-files";
 
@@ -12,8 +13,6 @@ const resolverArray = loadFilesSync(path.join(__dirname), {
     return fileExport;
   }
 });
-
-//  export const resolvers = mergeResolvers(resolverArray);
 
 
 module.exports = mergeResolvers(resolverArray);

@@ -59,5 +59,3 @@ export const Subscription = {
     subscribe: (_: any, __: any, { pubsub }: any) => pubsub.asyncIterator("commentDeleted"),
   },
 };
-
-// module.exports.Subscription = Subscription;

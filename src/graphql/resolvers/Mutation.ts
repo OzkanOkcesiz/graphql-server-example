@@ -12,7 +12,7 @@ export const Mutation = {
       return user;
     },
     updateUser: (_: any, { id, data }: any, { pubsub, db }: any) => {
-      const user_index = db.users.findIndex((user: { id: any; }) => user.id === id);
+      const user_index = db.users.findIndex((user: { id: string; }) => user.id === id);
 
       if (user_index === -1) {
         throw new Error("User not found.");
@@ -28,7 +28,7 @@ export const Mutation = {
       return updated_user;
     },
     deleteUser: (_: any, { id }: any, { pubsub, db }: any) => {
-      const user_index = db.users.findIndex((user: { id: any; }) => user.id === id);
+      const user_index = db.users.findIndex((user: { id: string; }) => user.id === id);
 
       if (user_index === -1) {
         throw new Error("User not found.");
@@ -63,7 +63,7 @@ export const Mutation = {
       return post;
     },
     updatePost: (_: any, { id, data }: any, { pubsub, db }: any) => {
-      const post_index = db.posts.findIndex((post: { id: any; }) => post.id === id);
+      const post_index = db.posts.findIndex((post: { id: string; }) => post.id === id);
 
       if (post_index === -1) {
         throw new Error("Post not found.");
@@ -79,7 +79,7 @@ export const Mutation = {
       return updated_post;
     },
     deletePost: (_: any, { id }: any, { pubsub, db }: any) => {
-      const post_index = db.posts.findIndex((post: { id: any; }) => post.id === id);
+      const post_index = db.posts.findIndex((post: { id: string; }) => post.id === id);
 
       if (post_index === -1) {
         throw new Error("Post not found.");
@@ -115,7 +115,7 @@ export const Mutation = {
       return comment;
     },
     updateComment: (_: any, { id, data }: any, { pubsub, db }: any) => {
-      const comment_index = db.comments.findIndex((comment: { id: any; }) => comment.id === id);
+      const comment_index = db.comments.findIndex((comment: { id: string; }) => comment.id === id);
 
       if (comment_index === -1) {
         throw new Error("Comment not found");
@@ -131,7 +131,7 @@ export const Mutation = {
       return db.comments[comment_index];
     },
     deleteComment: (_: any, { id }: any, { pubsub, db }: any) => {
-      const comment_index = db.comments.findIndex((comment: { id: any; }) => comment.id === id);
+      const comment_index = db.comments.findIndex((comment: { id: string; }) => comment.id === id);
 
       if (comment_index === -1) {
         throw new Error("Comment not found.");
@@ -152,5 +152,3 @@ export const Mutation = {
       };
     },
   }
-
-// module.exports.Mutation = Mutation;

@@ -1,7 +1,5 @@
 import { GraphQLServer } from "graphql-yoga";
 
-// import {resolvers}  from "./graphql/resolvers/index";
-
 const resolvers = require("./graphql/resolvers")
 
 import { typeDefs } from "./graphql/typeDefs";
