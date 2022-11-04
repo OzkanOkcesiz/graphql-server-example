@@ -3,6 +3,7 @@ type User {
   id: ID!
   fullName: String!
   age: Int!
+  profile_photo: String
   posts: [Post!]!
   comments: [Comment!]!
 }
@@ -10,11 +11,13 @@ type User {
 input CreateUserInput {
   fullName: String!
   age: Int!
+  profile_photo: String
 }
 
 input UpdateUserInput {
   fullName: String
   age: Int
+  profile_photo: String
 }
 
 type Query {
