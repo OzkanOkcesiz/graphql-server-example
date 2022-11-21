@@ -55,7 +55,7 @@ export const Mutation = {
         id: nanoid(6),
         ...data,
       };
-      db.posts.push(post);
+      db.posts.unshift(post);
 
       pubsub.publish("postCreated", { postCreated: post });
       pubsub.publish("postCount", { postCount: db.posts.length });
