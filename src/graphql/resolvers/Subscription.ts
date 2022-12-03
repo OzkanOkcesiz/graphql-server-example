@@ -44,8 +44,6 @@ export const Subscription = {
     subscribe: withFilter(
       (_, __, { pubsub }) => pubsub.asyncIterator("commentCreated"),
       (payload, variables) => {
-        console.log("payload", payload);
-        console.log("variables", variables);
         return variables.post_id
           ? payload.commentCreated.post_id === variables.post_id
           : true;
