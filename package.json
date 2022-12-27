@@ -1,7 +1,10 @@
 {
   "name": "grapql-server",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "index.ts",
+  "engines": {
+    "node": "18.x"
+  },
   "scripts": {
     "start": "node ./src/index.ts",
     "dev": "nodemon ./src/index.ts"
